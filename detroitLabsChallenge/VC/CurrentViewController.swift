@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+
+
 class CurrentViewController: UIViewController {
     
     // MARK:- Outlets
@@ -19,9 +21,11 @@ class CurrentViewController: UIViewController {
     
     // MARK:- Constants & Vars
     
-     let locationManagerVar = CLLocationManager()
+    let locationManagerVar = CLLocationManager()
+    
     
     // MARK: ViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
