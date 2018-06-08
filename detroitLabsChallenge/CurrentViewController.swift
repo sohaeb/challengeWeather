@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class CurrentViewController: UIViewController {
-
+    
     // MARK:- Outlets
     
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -26,40 +26,41 @@ class CurrentViewController: UIViewController {
         
     }
     
-    //-----------------------------------------------------//
-
-    // MARK:- LocationManager Delegate
-    
-    extension CurrentWeatherVC: CLLocationManagerDelegate
-    {
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            
-            if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
-
-                }
-                
-            } else {
-                print("Couldn't get current coordinates")
-            }
-        }
-        
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error)
-        }
-        
-        func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
-            return true
-        }
-        
-        
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            if status == .authorizedAlways || status == .authorizedWhenInUse {
-                
-                manager.startUpdatingLocation()
-            }
-        }
-        
-    }
-
 }
+
+//-----------------------------------------------------//
+
+// MARK:- LocationManager Delegate
+
+extension CurrentViewController: CLLocationManagerDelegate
+{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
+            
+            print("Values are: lat: \(lat) and long: \(long)")
+            
+        } else {
+            print("Couldn't get current coordinates")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
+        return true
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            
+            manager.startUpdatingLocation()
+        }
+    }
+    
+}
+
 
