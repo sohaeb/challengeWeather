@@ -99,13 +99,10 @@
 		6C28741D20CA8EF0007F3A1B /* detroitLabsChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				6C28741E20CA8EF0007F3A1B /* AppDelegate.swift */,
+				6C28744E20CA8F08007F3A1B /* Supporting Files */,
 				6C28742020CA8EF0007F3A1B /* FirstViewController.swift */,
 				6C28742220CA8EF0007F3A1B /* SecondViewController.swift */,
 				6C28742420CA8EF0007F3A1B /* Main.storyboard */,
-				6C28742720CA8EF4007F3A1B /* Assets.xcassets */,
-				6C28742920CA8EF4007F3A1B /* LaunchScreen.storyboard */,
-				6C28742C20CA8EF4007F3A1B /* Info.plist */,
 			);
 			path = detroitLabsChallenge;
 			sourceTree = "<group>";
@@ -126,6 +123,17 @@
 				6C28744220CA8EF4007F3A1B /* Info.plist */,
 			);
 			path = detroitLabsChallengeUITests;
+			sourceTree = "<group>";
+		};
+		6C28744E20CA8F08007F3A1B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C28741E20CA8EF0007F3A1B /* AppDelegate.swift */,
+				6C28742720CA8EF4007F3A1B /* Assets.xcassets */,
+				6C28742920CA8EF4007F3A1B /* LaunchScreen.storyboard */,
+				6C28742C20CA8EF4007F3A1B /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
