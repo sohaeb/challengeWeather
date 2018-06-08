@@ -52,13 +52,38 @@ class CurrentViewController: UIViewController {
             do {
                 
                 let todo = try decoder.decode(OpenWeather.self, from: content)
+                
                 print(todo)
+                
+                // Mathmetical Equation to convert K to F
+                var faher = ((todo.main.temp * (9/5)) - 459.67)
+                // Round the result to 2 digits only
+                faher.round()
+                
+                // asign them to new vars
+                self.nameOfCity = todo.name
+                self.currentTemp = String(faher)
+                self.iconCode = todo.weather[0].icon
                 
             } catch {
                 print("error trying to convert data to JSON in URLsession taks func")
             }
             
             DispatchQueue.main.async {
+                
+                self.currentTempLabel.text = self.currentTemp
+                self.currentCityOutlet.text = self.nameOfCity
+                
+                guard let url = URL(string: "http://openweathermap.org/img/w/\(self.iconCode).png") else {
+                    print("url not working")
+                    return
+                }
+                
+                let downloadedImage = try? UIImage(data: Data(contentsOf: url))
+                
+                if let downloadedImage = downloadedImage {
+                    self.CurrentWeatherimageView.image = downloadedImage
+                }
                 
             }
             
