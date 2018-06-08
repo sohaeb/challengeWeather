@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CurrentViewController: UIViewController {
 
@@ -22,13 +23,43 @@ class CurrentViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
+        
     }
+    
+    //-----------------------------------------------------//
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK:- LocationManager Delegate
+    
+    extension CurrentWeatherVC: CLLocationManagerDelegate
+    {
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            
+            if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
+
+                }
+                
+            } else {
+                print("Couldn't get current coordinates")
+            }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print(error)
+        }
+        
+        func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
+            return true
+        }
+        
+        
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            if status == .authorizedAlways || status == .authorizedWhenInUse {
+                
+                manager.startUpdatingLocation()
+            }
+        }
+        
     }
-
 
 }
 

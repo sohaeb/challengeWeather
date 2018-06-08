@@ -10,6 +10,8 @@ import UIKit
 
 class FiveDaysTableViewController: UITableViewController {
 
+    // MARK:- Outlets
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,11 +22,7 @@ class FiveDaysTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
