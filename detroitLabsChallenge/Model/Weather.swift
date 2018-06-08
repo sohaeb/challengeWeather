@@ -13,10 +13,16 @@ struct OpenWeather : Codable {
     let name : String
     let dt : String
     let main : Main
-    
+    let weather : [Weather]
+}
+
+struct Weather : Codable {
+
+    let icon : String
 }
 
 struct Main : Codable {
+    
     let temp : Double
     let humidity : Int
     let pressure : Int

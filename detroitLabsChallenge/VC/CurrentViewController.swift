@@ -9,8 +9,6 @@
 import UIKit
 import CoreLocation
 
-
-
 class CurrentViewController: UIViewController {
     
     // MARK:- Outlets
@@ -22,6 +20,52 @@ class CurrentViewController: UIViewController {
     // MARK:- Constants & Vars
     
     let locationManagerVar = CLLocationManager()
+    
+    var nameOfCity = ""
+    var currentTemp = ""
+    var iconCode = ""
+    
+    // MARK:- Functions
+    
+    //
+    // This method will download JSON data from api.openweathermap.org
+    //
+    func download(lat: Double, long: Double) {
+        
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&APPID=\(Constants.API_KEY)")
+        
+        // Create a new dataTask that returns downloaded data
+        URLSession.shared.dataTask(with: url!) {( data, response, error ) in
+            
+            
+            if error != nil {
+                print("The error inside URL Session is: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            
+            guard let content = data else {
+                print("No data was downloaded using URL session")
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                
+                let todo = try decoder.decode(OpenWeather.self, from: content)
+                print(todo)
+                
+            } catch {
+                print("error trying to convert data to JSON in URLsession taks func")
+            }
+            
+            DispatchQueue.main.async {
+                
+            }
+            
+            }.resume()
+        
+        //("reached end of URL session func")
+    }
     
     
     // MARK: ViewController
