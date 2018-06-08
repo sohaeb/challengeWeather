@@ -11,13 +11,13 @@ import Foundation
 struct OpenWeather : Codable {
     
     let name : String
-    let dt : String
+    let dt : Int
     let main : Main
     let weather : [Weather]
 }
 
 struct Weather : Codable {
-
+    
     let icon : String
 }
 

@@ -37,9 +37,17 @@ class CurrentViewController: UIViewController {
         // Create a new dataTask that returns downloaded data
         URLSession.shared.dataTask(with: url!) {( data, response, error ) in
             
+//            print("response is \(response)")
             
-            if error != nil {
+            if error == nil {
+                
+            } else {
                 print("The error inside URL Session is: \(String(describing: error?.localizedDescription))")
+                
+                DispatchQueue.main.async {
+                    //("main async called now inside URL session")
+                   
+                }
                 return
             }
             
@@ -49,18 +57,19 @@ class CurrentViewController: UIViewController {
             }
             
             let decoder = JSONDecoder()
+            
             do {
                 
                 let todo = try decoder.decode(OpenWeather.self, from: content)
                 
-                print(todo)
+                print(todo.name)
                 
-                // Mathmetical Equation to convert K to F
+//                 Mathmetical Equation to convert K to F
                 var faher = ((todo.main.temp * (9/5)) - 459.67)
-                // Round the result to 2 digits only
+//                 Round the result to 2 digits only
                 faher.round()
                 
-                // asign them to new vars
+//                 assign them to new vars
                 self.nameOfCity = todo.name
                 self.currentTemp = String(faher)
                 self.iconCode = todo.weather[0].icon
@@ -118,6 +127,7 @@ extension CurrentViewController: CLLocationManagerDelegate
         if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
             
             print("Values are: lat: \(lat) and long: \(long)")
+            download(lat: lat, long: long)
             
         } else {
             print("Couldn't get current coordinates")

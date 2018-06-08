@@ -85,7 +85,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="96" id="C3K-cw-Rg7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="96" id="C3K-cw-Rg7" customClass="TableViewCell" customModule="detroitLabsChallenge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C3K-cw-Rg7" id="akD-du-UR8">
@@ -162,6 +162,12 @@
                                         <constraint firstItem="PX9-Hc-7O9" firstAttribute="leading" secondItem="akD-du-UR8" secondAttribute="leading" constant="20" symbolic="YES" id="zpT-vK-7MV"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellDateLabel" destination="coI-rY-0jB" id="gJu-Me-LCY"/>
+                                    <outlet property="cellHighTempLabel" destination="VyG-9Q-a2N" id="X5S-oh-HhC"/>
+                                    <outlet property="cellImageView" destination="PX9-Hc-7O9" id="C0b-FA-H3L"/>
+                                    <outlet property="cellLowTempLabel" destination="y0C-7e-bRx" id="etd-IC-0cx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
