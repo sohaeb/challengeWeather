@@ -100,16 +100,13 @@ class FiveDaysTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        print("here?")
+
         let oneItem = arrayOfItems[indexPath.row]
         
          // Configure the cell...
     
         let date = Date(timeIntervalSince1970: TimeInterval(oneItem.dt))
-        
-        print(date)
-        
-        
+    
         cell.cellDateLabel.text = DateFormatting.creatingTheDateFromTemplate(date: date, time: false)
         cell.cellHighTempLabel.text = String(format: "%.0f", oneItem.main.temp_max.convertToF())
         cell.cellLowTempLabel.text = String(format: "%.0f", oneItem.main.temp_min.convertToF())
@@ -179,7 +176,6 @@ extension FiveDaysTableViewController: CLLocationManagerDelegate
 
         if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
 
-            print("Values are: lat: \(lat) and long: \(long)")
             download(lat: lat, long: long)
 
         } else {

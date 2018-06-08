@@ -80,11 +80,13 @@ class CurrentViewController: UIViewController {
                 self.currentTempLabel.text = self.currentTemp
                 self.currentCityOutlet.text = self.nameOfCity
                 
+                // create a URL to download icons
                 guard let url = URL(string: "http://openweathermap.org/img/w/\(self.iconCode).png") else {
                     print("url not working")
                     return
                 }
                 
+                // Download the icon from the URL
                 let downloadedImage = try? UIImage(data: Data(contentsOf: url))
                 
                 if let downloadedImage = downloadedImage {
@@ -119,8 +121,6 @@ extension CurrentViewController: CLLocationManagerDelegate
      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
-            
-            print("Values are: lat: \(lat) and long: \(long)")
             
                 download(lat: lat, long: long)
             
