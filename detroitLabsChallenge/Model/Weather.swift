@@ -21,11 +21,18 @@ struct Weather : Codable {
     let icon : String
 }
 
-struct Main : Codable {
+struct FiveDaysWeather : Codable {
     
-    let temp : Double
-    let humidity : Int
-    let pressure : Int
+    let list : [SomeList]
+}
+
+struct SomeList : Codable {
+    
+    let dt : Int
+    let main : Main
+}
+
+struct Main : Codable {
     let temp_min : Double
     let temp_max : Double
 }

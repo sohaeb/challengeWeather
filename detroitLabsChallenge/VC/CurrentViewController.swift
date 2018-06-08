@@ -122,28 +122,29 @@ class CurrentViewController: UIViewController {
 
 extension CurrentViewController: CLLocationManagerDelegate
 {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let lat = locations.last?.coordinate.latitude, let long = locations.last?.coordinate.longitude {
             
             print("Values are: lat: \(lat) and long: \(long)")
-            download(lat: lat, long: long)
+            
+                download(lat: lat, long: long)
             
         } else {
             print("Couldn't get current coordinates")
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
     
-    func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
+     func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
         return true
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             
             manager.startUpdatingLocation()
