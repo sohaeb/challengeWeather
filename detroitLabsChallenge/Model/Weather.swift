@@ -30,9 +30,11 @@ struct SomeList : Codable {
     
     let dt : Int
     let main : Main
+    let weather : [Weather]
 }
 
 struct Main : Codable {
     let temp_min : Double
     let temp_max : Double
+    let temp : Double
 }

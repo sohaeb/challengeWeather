@@ -11,20 +11,27 @@ import CoreLocation
 
 class FiveDaysTableViewController: UITableViewController {
 
+    var tableArrayCount : Int? = nil
+    
+    var arrayOfItems = [SomeList]()
+    
     // MARK:- Outlets
     
     let locationVar = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        locationVar.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationVar.delegate = (self)
+        locationVar.requestWhenInUseAuthorization()
+        locationVar.requestLocation()
     
     }
     
     func download(lat: Double, long: Double) {
         
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&APPID=\(Constants.API_KEY)")
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&APPID=\(Constants.API_KEY)&cnt=5")
         
         // Create a new dataTask that returns downloaded data
         URLSession.shared.dataTask(with: url!) {( data, response, error ) in
@@ -52,19 +59,13 @@ class FiveDaysTableViewController: UITableViewController {
             
             do {
                 
-                let todo = try decoder.decode(OpenWeather.self, from: content)
+                let todo = try decoder.decode(FiveDaysWeather.self, from: content)
                 
-                print(todo.name)
+//                print(todo.weather[0].icon
                 
-                //                 Mathmetical Equation to convert K to F
-                var faher = ((todo.main.temp * (9/5)) - 459.67)
-                //                 Round the result to 2 digits only
-                faher.round()
-                
-                //                 assign them to new vars
-//                self.nameOfCity = todo.name
-//                self.currentTemp = String(faher)
-//                self.iconCode = todo.weather[0].icon
+//                for i in 0..<5 {
+                self.arrayOfItems = todo.list
+//                }
                 
             } catch {
                 print("error trying to convert data to JSON in URLsession taks func")
@@ -72,19 +73,7 @@ class FiveDaysTableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 
-//                self.currentTempLabel.text = self.currentTemp
-//                self.currentCityOutlet.text = self.nameOfCity
-                
-//                guard let url = URL(string: "http://openweathermap.org/img/w/\(self.iconCode).png") else {
-//                    print("url not working")
-//                    return
-//                }
-//
-//                let downloadedImage = try? UIImage(data: Data(contentsOf: url))
-//
-//                if let downloadedImage = downloadedImage {
-//                    self.CurrentWeatherimageView.image = downloadedImage
-//                }
+                self.tableView.reloadData()
                 
             }
             
@@ -104,18 +93,38 @@ class FiveDaysTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return arrayOfItems.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        
+        print("here?")
+        let oneItem = arrayOfItems[indexPath.row]
+        
+         // Configure the cell...
+    
+        let date = Date(timeIntervalSince1970: TimeInterval(oneItem.dt))
+        
+        print(date)
+        
+        
+        cell.cellDateLabel.text = DateFormatting.creatingTheDateFromTemplate(date: date, time: false)
+        cell.cellHighTempLabel.text = String(format: "%.0f", oneItem.main.temp_max.convertToF())
+        cell.cellLowTempLabel.text = String(format: "%.0f", oneItem.main.temp_min.convertToF())
+        
+         let url = URL(string: "http://openweathermap.org/img/w/\(oneItem.weather[0].icon).png")!
+        
+        let downloadedImage = try? UIImage(data: Data(contentsOf: url))
+        
+        if let downloadedImage = downloadedImage {
+             cell.cellImageView.image = downloadedImage
+        }
+        
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -186,12 +195,6 @@ extension FiveDaysTableViewController: CLLocationManagerDelegate
         return true
     }
 
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-
-            manager.startUpdatingLocation()
-        }
-    }
-
 }
+
+

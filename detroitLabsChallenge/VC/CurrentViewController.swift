@@ -10,8 +10,7 @@ import UIKit
 import CoreLocation
 
 class CurrentViewController: UIViewController {
-    
-    // MARK:- Outlets
+      // MARK:- Outlets
     
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var CurrentWeatherimageView: UIImageView!
@@ -62,16 +61,14 @@ class CurrentViewController: UIViewController {
                 
                 let todo = try decoder.decode(OpenWeather.self, from: content)
                 
-                print(todo.name)
-                
-//                 Mathmetical Equation to convert K to F
-                var faher = ((todo.main.temp * (9/5)) - 459.67)
-//                 Round the result to 2 digits only
-                faher.round()
-                
-//                 assign them to new vars
+//              assign them to new vars
                 self.nameOfCity = todo.name
-                self.currentTemp = String(faher)
+                
+                //1st convert it to F
+                let faher = todo.main.temp.convertToF()
+                // truncate it to get 2 digits only
+                self.currentTemp = String(format: "%.0f", faher)
+                
                 self.iconCode = todo.weather[0].icon
                 
             } catch {
@@ -113,10 +110,7 @@ class CurrentViewController: UIViewController {
         locationManagerVar.requestWhenInUseAuthorization()
         
     }
-    
 }
-
-//-----------------------------------------------------//
 
 // MARK:- LocationManager Delegate
 
