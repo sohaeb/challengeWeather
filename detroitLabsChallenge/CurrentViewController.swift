@@ -17,12 +17,18 @@ class CurrentViewController: UIViewController {
     @IBOutlet weak var CurrentWeatherimageView: UIImageView!
     @IBOutlet weak var currentCityOutlet: UILabel!
     
+    // MARK:- Constants & Vars
     
+     let locationManagerVar = CLLocationManager()
+    
+    // MARK: ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        locationManagerVar.desiredAccuracy = kCLLocationAccuracyKilometer
+        locationManagerVar.delegate = (self)
+        locationManagerVar.requestWhenInUseAuthorization()
         
     }
     
