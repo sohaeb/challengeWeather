@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  FirstViewController.swift
 //  detroitLabsChallenge
 //
 //  Created by may on 2018-06-08.
@@ -8,11 +8,20 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class CurrentViewController: UIViewController {
 
+    // MARK:- Outlets
+    
+    @IBOutlet weak var currentTempLabel: UILabel!
+    @IBOutlet weak var CurrentWeatherimageView: UIImageView!
+    @IBOutlet weak var currentCityOutlet: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
