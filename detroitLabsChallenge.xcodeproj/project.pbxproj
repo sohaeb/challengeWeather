@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C0A3C8120E353BF006A4DDF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A3C8020E353BF006A4DDF /* Network.swift */; };
 		6C28741F20CA8EF0007F3A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C28741E20CA8EF0007F3A1B /* AppDelegate.swift */; };
 		6C28742120CA8EF0007F3A1B /* CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C28742020CA8EF0007F3A1B /* CurrentViewController.swift */; };
 		6C28742620CA8EF0007F3A1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C28742420CA8EF0007F3A1B /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C0A3C8020E353BF006A4DDF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		6C28741B20CA8EF0007F3A1B /* detroitLabsChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = detroitLabsChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C28741E20CA8EF0007F3A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C28742020CA8EF0007F3A1B /* CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				6C28745120CA99A4007F3A1B /* Weather.swift */,
 				6C28745520CA9D0C007F3A1B /* Constants.swift */,
 				6C28745E20CAC3A1007F3A1B /* DateFormatting.swift */,
+				6C0A3C8020E353BF006A4DDF /* Network.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				6C28745620CA9D0C007F3A1B /* Constants.swift in Sources */,
 				6C28745220CA99A4007F3A1B /* Weather.swift in Sources */,
 				6C28741F20CA8EF0007F3A1B /* AppDelegate.swift in Sources */,
+				6C0A3C8120E353BF006A4DDF /* Network.swift in Sources */,
 				6C28745820CAABB5007F3A1B /* TableViewCell.swift in Sources */,
 				6C28745020CA940C007F3A1B /* FiveDaysTableViewController.swift in Sources */,
 				6C28742120CA8EF0007F3A1B /* CurrentViewController.swift in Sources */,

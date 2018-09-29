@@ -31,7 +31,7 @@ class FiveDaysTableViewController: UITableViewController {
     
     func download(lat: Double, long: Double) {
         
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&APPID=\(Constants.API_KEY)&cnt=5")
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&APPID=\(Constants.API_KEY)")
         
         // Create a new dataTask that returns downloaded data
         URLSession.shared.dataTask(with: url!) {( data, response, error ) in
@@ -64,6 +64,7 @@ class FiveDaysTableViewController: UITableViewController {
 //                print(todo.weather[0].icon
                 
 //                for i in 0..<5 {
+//                print(todo.)
                 self.arrayOfItems = todo.list
 //                }
                 
